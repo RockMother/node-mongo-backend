@@ -1,0 +1,26 @@
+{
+  "name": "node-mongo-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RockMother/node-mongo-backend.git"
+  },
+  "author": "Kirill Shumilov, Pavel Kuzmin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RockMother/node-mongo-backend/issues"
+  },
+  "homepage": "https://github.com/RockMother/node-mongo-backend#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.13.7"
+  }
+}
