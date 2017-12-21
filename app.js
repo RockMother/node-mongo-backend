@@ -4,7 +4,9 @@ const express =  require("express"),
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost/node-mongo-backend-database');
+// mongoose.connect('mongodb://localhost/node-mongo-backend-database');
+
+app.use('/', express.static(__dirname + '/web'));
 
 app.use(require('./controllers'));
 
