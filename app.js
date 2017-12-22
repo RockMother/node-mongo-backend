@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT;
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use('/', express.static(__dirname + '/web'));
 
