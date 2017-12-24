@@ -10,10 +10,14 @@ mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true }, (error) => {
 });
 mongoose.Promise = global.Promise;
 
+app.use(express.urlencoded({
+    extended: true
+})); 
+app.use(express.json());
 app.use(require('./middlewares/cors'));
 app.use('/api', require('./controllers'));
 
 
-app.listen(port, () => {
+app.listen(port, () => { 
     console.log(`App runned on the port ${port}`);
 });
