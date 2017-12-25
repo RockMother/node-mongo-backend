@@ -1,6 +1,8 @@
-const express = require('express'),
-      router = express.Router(),
-      post = require('../models/post');
+const express = require('express');
+const router = express.Router();
+const post = require('../models/post');
+const upload = require('../utils/upload');
+
 
 router.get('/', function(req, res) {
     post.find((err, posts) => {
@@ -11,11 +13,12 @@ router.get('/', function(req, res) {
     });
 });
 
-router.post('/', function(req, res){
+router.post('/', upload.any(), function(req, res) {
   post.create({
     title: req.body.title,
-    texts: req.body.texts.map(text => { return { text: text }; }),
-    categories: req.body.categories.map (name => { return { name: name }; })
+    texts: req.body.texts? req.body.texts.map(text => { return { text: text }; }): null,
+    categories: req.body.categories? req.body.categories.map (name => { return { name: name }; }): null,
+    images: req.files? req.files.map(image => { return image.id }): []
   }, (err, model) => {
     if (err)
       res.status(500).send(err);

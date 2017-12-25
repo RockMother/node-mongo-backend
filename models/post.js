@@ -6,7 +6,7 @@ const postModel = new Schema({
     texts: [{text: String}],
     categories: [{name: String}],
     templateId: { type: mongoose.Schema.Types.ObjectId,  ref: 'Template' },
-    images: [{ data: Buffer, contentType: String }]
+    images: [{ type: mongoose.Schema.Types.ObjectId,  ref: 'Images' }]
 });
 
 module.exports = mongoose.model('Post', postModel);
