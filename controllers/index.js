@@ -5,6 +5,7 @@ router.get('/test', function (request, response) {
     response.json({test: 'ok'});
 });
 
-router.use('/posts', require('./posts'));
+router.use('/posts', require('./postsController'));
+router.use('/image', require('./imageController'));
 
 module.exports = router;
