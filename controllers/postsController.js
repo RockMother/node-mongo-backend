@@ -36,9 +36,15 @@ router.post('/', upload.any(), function (req, res) {
 
     if (requestPost._id) {
 
-        console.log("/UPDATE")
+        console.log(requestPost);
 
-        post.update(requestPost)
+        post.update({_id: requestPost._id}, requestPost, {upsert: true}, (err, model) => {
+
+            if (err)
+                res.status(500).send(err);
+            else
+                res.status(201).send(model);
+        });
 
     } else {
 
