@@ -2,10 +2,11 @@
   "name": "node-mongo-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "gulp",
-    "test": "test"
+    "test": "test",
+    "testdata": "node testdata/main.js"
   },
   "repository": {
     "type": "git",
