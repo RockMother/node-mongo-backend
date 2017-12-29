@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/RockMother/node-mongo-backend#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "gridfs-stream": "^1.1.1",
     "gulp": "^3.9.1",
