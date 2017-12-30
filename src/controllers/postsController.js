@@ -60,7 +60,19 @@ router.post('/', upload.any(), function (req, res) {
 });
 
 router.get('/:postId', function (req, res) {
-    res.send(`Post: ${req.params.postId}`);
+    res.status(404).send();
+});
+
+router.delete('/:postId', function (req, res) {
+
+    post.remove({_id: req.params.postId}, function (err) {
+        if (err)
+            res.status(500).send(err);
+
+        else
+            res.status(201).send();
+    });
+
 });
 
 module.exports = router;
