@@ -20,23 +20,7 @@ router.get('/:id', function (req, res) {
                     return res.status(400).send("Image not found");
                 else {
                     res.writeHead(200, { 'Content-Type': files[0].contentType });
-
-                    const readstream = gfs.createReadStream({
-                        filename: files[0].filename
-                    });
-
-                    readstream.on('data', (chunk) => {
-                        res.write(chunk);
-                    });
-
-                    readstream.on('end', () => {
-                        res.end();
-                    });
-
-                    readstream.on('error', (err) => {
-                        console.error(err);
-                        throw err;
-                    });
+                    gfs.createReadStream(files[0]).pipe(res);
                 }
             }
         });
