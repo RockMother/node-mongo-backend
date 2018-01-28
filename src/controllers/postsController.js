@@ -19,10 +19,10 @@ router.post('/', upload.any(), function (req, res) {
         _id: req.body._id,
         title: req.body.title,
         texts: req.body.texts ? req.body.texts.map(text => {
-            return {text: text};
+            return text;
         }) : null,
-        categories: req.body.categories ? req.body.categories.map(name => {
-            return {name: name};
+        categories: req.body.categories ? req.body.categories.map(category => {
+            return category;
         }) : null,
         images: req.files ? req.files.map(image => {
             return {
