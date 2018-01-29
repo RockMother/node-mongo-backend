@@ -22,7 +22,7 @@ module.exports = () => {
     Post.create({
 
         title: 'Some item i want to sell..',
-        texts: [{text: ''}],
+        texts: [],
         categories: [{ name: 'Store' }],
         images: []
 
@@ -42,6 +42,13 @@ module.exports = () => {
         'Двоечка.jpg',
         'Серцеедка.jpg',
     ];
+
+    fs.readdirSync('./testdata/testimages/').map(file => {
+
+        // console.log(file.toString())
+
+        images.push(file.toString())
+    });
 
     return Promise.all(images.map(imageName => {
         return new Promise((resolve, reject) => {
