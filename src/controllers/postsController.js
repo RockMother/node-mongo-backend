@@ -5,7 +5,15 @@ const upload = require('../utils/upload');
 
 
 router.get('/', function (req, res) {
-    post.find((err, posts) => {
+    let query = null;
+    if (req.query.category) {
+        query = post.find({
+            'categories.name': req.query.category
+        });
+    } else {
+        query = post.find();
+    }
+    query.exec((err, posts) => {
         if (err)
             res.status(500).send(`Error occured: ${err}`);
         else
