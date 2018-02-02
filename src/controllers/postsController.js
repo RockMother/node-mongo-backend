@@ -15,15 +15,13 @@ router.get('/', function (req, res) {
 
 router.post('/', upload.any(), function (req, res) {
 
+    console.log(req.body)
+
     const requestPost = {
         _id: req.body._id,
         title: req.body.title,
-        texts: req.body.texts ? req.body.texts.map(text => {
-            return text;
-        }) : null,
-        categories: req.body.categories ? req.body.categories.map(category => {
-            return category;
-        }) : null,
+        texts: JSON.parse(req.body.texts),
+        categories: JSON.parse(req.body.categories),
         images: req.files ? req.files.map(image => {
             return {
                 imageId: image.id,
@@ -34,21 +32,22 @@ router.post('/', upload.any(), function (req, res) {
 
     console.log(requestPost._id);
 
-    if (requestPost._id) {
+    if (requestPost._id && requestPost._id !== "new") {
 
         console.log(requestPost);
 
         post.update({_id: requestPost._id}, requestPost, {upsert: true}, (err, model) => {
 
-            if (err)
+            if (err) {
                 res.status(500).send(err);
-            else
+                console.log(err);
+            } else
                 res.status(201).send(model);
         });
 
     } else {
 
-        console.log("/CREATE")
+        console.log("/CREATE");
 
         post.create(requestPost, (err, model) => {
             if (err)
