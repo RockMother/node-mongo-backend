@@ -57,11 +57,17 @@ router.post('/', upload.any(), function (req, res) {
 
         console.log("/CREATE");
 
+        requestPost._id = undefined;
+
         post.create(requestPost, (err, model) => {
-            if (err)
+
+            if (err) {
                 res.status(500).send(err);
-            else
+                console.log(err);
+            } else {
                 res.status(201).send(model);
+                console.log(model);
+            }
         });
     }
 });
