@@ -3,7 +3,6 @@ const router = express.Router();
 const post = require('../models/post');
 const upload = require('../utils/upload');
 
-
 router.get('/', function (req, res) {
     let query = null;
     if (req.query.category) {
@@ -21,12 +20,8 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/', upload.any(), function (req, res) {
-
-    console.log(req.body)
-
-    const requestPost = {
-        _id: req.body._id,
+function getPostFromBody(req) {
+    return {
         title: req.body.title,
         texts: JSON.parse(req.body.texts),
         categories: JSON.parse(req.body.categories),
@@ -37,39 +32,33 @@ router.post('/', upload.any(), function (req, res) {
             }
         }) : []
     };
+};
 
-    console.log(requestPost._id);
+router.post('/', upload.any(), function (req, res) {
+    post.create(getPostFromBody(req), (err, model) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(201).send(model);
+        }
+    });
+});
 
-    if (requestPost._id && requestPost._id !== "new") {
-
-        console.log(requestPost);
-
-        post.update({_id: requestPost._id}, requestPost, {upsert: true}, (err, model) => {
-
-            if (err) {
-                res.status(500).send(err);
-                console.log(err);
-            } else
-                res.status(201).send(model);
-        });
-
-    } else {
-
-        console.log("/CREATE");
-
-        requestPost._id = undefined;
-
-        post.create(requestPost, (err, model) => {
-
-            if (err) {
-                res.status(500).send(err);
-                console.log(err);
-            } else {
-                res.status(201).send(model);
-                console.log(model);
-            }
-        });
-    }
+router.put('/', upload.any(), function (req, res) {
+    const requestPost = getPostFromBody(req);
+    post.findById(req.body._id, function(err, model) {
+        if (err)
+            res.status(500).send(err);
+        else {
+            model.set(requestPost);
+            model.save(function(err, updatedModel) {
+                if (err)
+                    res.status(500).send(err);
+                else 
+                    res.status(200).send(updatedModel);
+            });
+        }
+    });
 });
 
 router.get('/:postId', function (req, res) {
@@ -77,15 +66,12 @@ router.get('/:postId', function (req, res) {
 });
 
 router.delete('/:postId', function (req, res) {
-
-    post.remove({_id: req.params.postId}, function (err) {
+    post.remove({ _id: req.params.postId }, function (err) {
         if (err)
             res.status(500).send(err);
-
         else
-            res.status(201).send();
+            res.status(200).send();
     });
-
 });
 
 module.exports = router;
