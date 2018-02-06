@@ -21,16 +21,20 @@ router.get('/', function (req, res) {
 });
 
 function getPostFromBody(req) {
+    let images = JSON.parse(req.body.images);
+    if (req.files) {
+        req.files.forEach(image => {
+            images.push({
+                imageId: image.id,
+                imageName: image.metadata.originalname
+            });
+        });
+    }
     return {
         title: req.body.title,
         texts: JSON.parse(req.body.texts),
         categories: JSON.parse(req.body.categories),
-        images: req.files ? req.files.map(image => {
-            return {
-                imageId: image.id,
-                imageName: image.metadata.originalname
-            }
-        }) : []
+        images: images
     };
 };
 
@@ -46,15 +50,15 @@ router.post('/', upload.any(), function (req, res) {
 
 router.put('/', upload.any(), function (req, res) {
     const requestPost = getPostFromBody(req);
-    post.findById(req.body._id, function(err, model) {
+    post.findById(req.body._id, function (err, model) {
         if (err)
             res.status(500).send(err);
         else {
             model.set(requestPost);
-            model.save(function(err, updatedModel) {
+            model.save(function (err, updatedModel) {
                 if (err)
                     res.status(500).send(err);
-                else 
+                else
                     res.status(200).send(updatedModel);
             });
         }
@@ -70,7 +74,7 @@ router.delete('/:postId', function (req, res) {
         if (err)
             res.status(500).send(err);
         else
-            res.status(200).send();
+            res.sendStatus(200);
     });
 });
 
