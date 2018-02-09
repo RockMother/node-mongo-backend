@@ -7,5 +7,6 @@ router.get('/test', function (request, response) {
 
 router.use('/posts', require('./postsController'));
 router.use('/image', require('./imageController'));
+router.use('/templates', require('./templatesController'));
 
 module.exports = router;

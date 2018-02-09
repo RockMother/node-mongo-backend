@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dropCurrentData = require('./dropCurrentData');
-const insertTestData = require('./insertTestData');
+const insertTestData = require('./posts');
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/node-mongo-backend-database';
 mongoose.Promise = global.Promise;

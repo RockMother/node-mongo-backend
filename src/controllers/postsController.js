@@ -8,9 +8,9 @@ router.get('/', function (req, res) {
     if (req.query.category) {
         query = post.find({
             'categories.name': req.query.category
-        });
+        }).populate('template');
     } else {
-        query = post.find();
+        query = post.find().populate('template');
     }
     query.exec((err, posts) => {
         if (err)
@@ -44,7 +44,12 @@ router.post('/', upload.any(), function (req, res) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.status(201).send(model);
+            model.populate('template', function(err, populatedModel){
+                if (err) 
+                    res.status(500).send(err);
+                else 
+                    res.status(200).sendStatus(populatedModel);
+            });
         }
     });
 });
@@ -59,8 +64,14 @@ router.put('/', upload.any(), function (req, res) {
             model.save(function (err, updatedModel) {
                 if (err)
                     res.status(500).send(err);
-                else
-                    res.status(200).send(updatedModel);
+                else {
+                    updatedModel.populate('template', function(err, populatedModel){
+                        if (err) 
+                            res.status(500).send(err);
+                        else 
+                            res.status(200).sendStatus(populatedModel);
+                    });
+                }
             });
         }
     });
