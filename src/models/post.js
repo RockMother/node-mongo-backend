@@ -5,7 +5,7 @@ const postModel = new Schema({
     title: String,
     texts: [{text: String}],
     categories: [{name: String}],
-    templateId: { type: mongoose.Schema.Types.ObjectId,  ref: 'Template' },
+    template: { template: String, title: String },
     images: [{ imageId: { type: mongoose.Schema.Types.ObjectId, ref: "fs.files" }, imageName: String} ]
 });
 
