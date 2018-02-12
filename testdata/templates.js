@@ -10,6 +10,12 @@ module.exports = () => {
                     </div>`
         },
         {
+            title: 'Image left. Text right',
+            template: `<div class = "row">
+                        <div class="half template-title"></div>
+                    </div>`
+        },
+        {
             title: 'Image right. Text left',
             template: `<div class = "row">
                         <div class="half template-title"></div>
