@@ -48,7 +48,7 @@ router.post('/', upload.any(), function (req, res) {
                 if (err) 
                     res.status(500).send(err);
                 else 
-                    res.status(200).sendStatus(populatedModel);
+                    res.status(200).send(populatedModel);
             });
         }
     });
