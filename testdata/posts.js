@@ -20,11 +20,11 @@ module.exports = () => {
                 template: templates[1]._id
             });
             Post.create({
-                title: 'Some email for our users<br />And one more contact<br /><br />And phone here<br /><br />+9999999999',
-                texts: [{ text: 'E-mail \nOther site' }],
+                title: 'Some email for our users<br />And one more contact<br /><br />And phone here:<br /><br /><b>+9 (999) 999 9999</b>',
+                texts: [],
                 categories: [{ name: 'Contacts' }],
                 images: [],
-                template: templates[0]._id 
+                template: templates[1]._id
             });
             Post.create({
                 title: 'Some text test',
