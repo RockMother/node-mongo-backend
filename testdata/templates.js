@@ -32,7 +32,7 @@ module.exports = () => {
             {
                 title: 'Image above Text',
                 template: `<div class = "column">
-                           <div class="template-image"><img src="./wall.png"></div>
+                           <div class="template-image"><img src="./god.png"></div>
                            <div class="template-title">Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file.</div>
                            </div>`
             },
@@ -48,7 +48,7 @@ module.exports = () => {
                 template: `<div class = "column">
                            <div class="template-image"><img src="./cloud.png"></div>
                            <div class="template-title">Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file.</div>
-                           <div class="template-image"><img src="./god.png"></div></div>
+                           <div class="template-image"><img src="./wall.png"></div></div>
                            </div>`
             },
             {

@@ -20,7 +20,10 @@ module.exports = () => {
                 template: templates[1]._id
             });
             Post.create({
-                title: 'Some email for our users<br />And one more contact<br /><br />And phone here:<br /><br /><b>+9 (999) 999 9999</b>',
+                title: '<a href="https://www.patreon.com/tomathespook">Patreon</a><br />' +
+                '<a href="https://www.instagram.com/tomathespook/">Instagram</a><br />' +
+                '<a href="https://twitter.com/tomathespook?lang=en">Twitter</a><br />' +
+                '<a href="https://m.vk.com/market-81909906">Shop</a>',
                 texts: [],
                 categories: [{ name: 'Contacts' }],
                 images: [],
