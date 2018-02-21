@@ -26,7 +26,8 @@ function getPostFromBody(req) {
         req.files.forEach(image => {
             images.push({
                 imageId: image.id,
-                imageName: image.metadata.originalname
+                imageName: image.metadata.originalname,
+                orderInTemplate: image.metadata.orderInTemplate
             });
         });
     }

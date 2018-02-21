@@ -41,7 +41,7 @@ module.exports = () => {
                 for (let j = 0; j < Math.floor(Math.random() * 4); j++) {
                     if (i - j >= 0) {
                         const file = files[i - j];
-                        images.push({ imageId: file._id, imageName: file.metadata.originalname });
+                        images.push({ imageId: file._id, imageName: file.metadata.originalname, orderInTemplate: j });
                     }
                 }
                 promises.push(new Promise((resolve, reject) => {

@@ -7,7 +7,8 @@ const storage = GridFsStorage({
     file: (req, file) => {
         return {
             metadata: {
-                originalname: file.originalname
+                originalname: file.originalname,
+                orderInTemplate: parseInt(file.fieldname.substr(1))
             }
         };
     }
