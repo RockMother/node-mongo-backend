@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-
+const passport = require('passport');
+require('./authentication/init')();
 const app = express();
 const port = process.env.PORT;
 
@@ -15,8 +16,8 @@ mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true }, (error) => {
     }));
     app.use(express.json());
     app.use(require('./middlewares/cors'));
+    app.use(passport.initialize())
     app.use('/api', require('./controllers'));
-
 
     app.listen(port, () => {
         console.log(`App runned on the port ${port}`);

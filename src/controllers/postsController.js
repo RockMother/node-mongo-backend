@@ -1,3 +1,4 @@
+const passport = require('passport');
 const express = require('express');
 const router = express.Router();
 const post = require('../models/post');
@@ -40,7 +41,7 @@ function getPostFromBody(req) {
     };
 };
 
-router.post('/', upload.any(), function (req, res) {
+router.post('/', passport.authenticate('token', { "session": false }), upload.any(), function (req, res) {
     post.create(getPostFromBody(req), (err, model) => {
         if (err) {
             res.status(500).send(err);
@@ -55,7 +56,7 @@ router.post('/', upload.any(), function (req, res) {
     });
 });
 
-router.put('/', upload.any(), function (req, res) {
+router.put('/', passport.authenticate('token', { "session": false }), upload.any(), function (req, res) {
     const requestPost = getPostFromBody(req);
     post.findById(req.body._id, function (err, model) {
         if (err)
@@ -82,7 +83,7 @@ router.get('/:postId', function (req, res) {
     res.status(404).send();
 });
 
-router.delete('/:postId', function (req, res) {
+router.delete('/:postId', passport.authenticate('token', { "session": false }), function (req, res) {
     post.remove({ _id: req.params.postId }, function (err) {
         if (err)
             res.status(500).send(err);
