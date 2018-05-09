@@ -7,11 +7,11 @@ function initPassport() {
         function (req, done) {
             const userToken = req.header('tokenAPI');
             if (userToken) {
-                token.findOne((err, result) => {
+                token.find({ 'token': userToken }, (err, result) => {
                     if (err) {
                         done(null, false);
                     }
-                    if (result.token === userToken) {
+                    if (result[0].token === userToken) {
                         done(null, 'Admin');
                     } else {
                         done(null, false);
