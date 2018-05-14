@@ -1,14 +1,16 @@
-
 const gulp = require('gulp');
 const nodemon  = require('gulp-nodemon');
 
-require('dotenv').config()
+require('./src/config.js');
 
 gulp.task('default',  () => {
    nodemon({
        script: 'src/app.js',
        ext: 'js',
        nodeArgs: ['--inspect'],
+       env: {
+           MONGODB_URI: process.env.MONGODB_URI_LOCALHOST
+       },
        ignore: ['../node_modules/**']
    });
 });
