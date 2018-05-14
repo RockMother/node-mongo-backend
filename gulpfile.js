@@ -1,6 +1,8 @@
-require('dotenv').config({path: '.env'});
+
 const gulp = require('gulp');
 const nodemon  = require('gulp-nodemon');
+
+require('dotenv').config()
 
 gulp.task('default',  () => {
    nodemon({
@@ -16,8 +18,7 @@ gulp.task('heroku', () => {
         script: 'src/app.js',
         ext: 'js',
         env: {
-            PORT: 8000,
-            MONGODB_URI: process.env.MONGODB_URI
+            MONGODB_URI: process.env.MONGODB_URI_HEROKU
         },
         ignore: ['../node_modules/**']
     });
