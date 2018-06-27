@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postModel = new Schema({
-    title: String,
+    titles: [{ title: String, orderInTemplate: Number }],
     texts: [{ text: String, orderInTemplate: Number }],
     categories: [{ name: String }],
     template: { type: mongoose.Schema.Types.ObjectId, ref: "Template" },

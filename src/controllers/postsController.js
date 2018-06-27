@@ -33,7 +33,7 @@ function getPostFromBody(req) {
         });
     }
     return {
-        title: req.body.title,
+        titles: JSON.parse(req.body.titles),
         template: JSON.parse(req.body.template),
         texts: JSON.parse(req.body.texts),
         categories: JSON.parse(req.body.categories),
