@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 function getTemplateFromBody(req) {
     return {
         title: req.body.title,
-        template: req.body.template
+        code: req.body.code
     };
 }
 

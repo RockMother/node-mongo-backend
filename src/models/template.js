@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
 
 const templateModel = new Schema({
     title: String,
-    template: String
+    code: String
 });
 
 module.exports = mongoose.model('Template', templateModel);
