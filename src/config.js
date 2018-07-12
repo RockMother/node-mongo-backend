@@ -1,7 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 const dotenv = require('dotenv');
-console.log(fs.exists('.env.development')); //undefined :O
-let envConfig = dotenv.parse(fs.exists('.env.development') ? fs.readFileSync('.env') : fs.readFileSync('.env.development')); // ;)
-for (var k in envConfig) {
+
+const configPath = path.join(__dirname, '../', '.env');
+const devConfigPath = path.join(__dirname, '../', '.env.development');
+let envConfig = dotenv.parse(fs.existsSync(configPath) ? fs.readFileSync(configPath) : fs.readFileSync(devConfigPath)); // ;)
+for (var k in envConfig) { 
     process.env[k] = envConfig[k]
 }
