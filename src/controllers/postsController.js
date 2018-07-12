@@ -36,6 +36,7 @@ function getPostFromBody(req) {
         titles: JSON.parse(req.body.titles),
         template: JSON.parse(req.body.template),
         texts: JSON.parse(req.body.texts),
+        htmls: JSON.parse(req.body.htmls),
         categories: JSON.parse(req.body.categories),
         images: images
     };

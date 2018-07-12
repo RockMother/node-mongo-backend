@@ -25,6 +25,14 @@ module.exports = () => {
 </div>`
             },
             {
+                title: 'Image at left, text at right',
+                code: `<div class = "grid card">
+    <div class="t-title col-start-1 col-end-6"></div>
+    <div class="t-html col-start-6 col-end-13"></div>                          
+    
+</div>`
+            },            
+            {
                 title: "5 images and texts between",
                 code: `<div class="grid card">
     <div class="t-image col-start-1 col-end-5 row-start-1 row-end-3"></div>

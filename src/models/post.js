@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const postModel = new Schema({
     titles: [{ title: String, orderInTemplate: Number }],
     texts: [{ text: String, orderInTemplate: Number }],
+    htmls: [{ html: String, orderInTemplate: Number }],
     categories: [{ name: String }],
     template: { type: mongoose.Schema.Types.ObjectId, ref: "Template" },
     images: [{ 
